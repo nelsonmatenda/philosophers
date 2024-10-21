@@ -2,24 +2,30 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <pthread.h>
-
-void	*routine()
-{
-	printf("From threads\n");
-	sleep(2);
-	printf("Finish\n");
-}
+#include <sys/wait.h>
 
 int main(int ac, char **av)
 {
-	pthread_t	t1, t2;
-	if(pthread_create(&t1, NULL, &routine, NULL) != 0)
-		return (EXIT_FAILURE);
-	if(pthread_create(&t2, NULL, &routine, NULL) != 0)
-		return (EXIT_FAILURE);
-	if(pthread_join(t1, NULL) != 0)
-		return (EXIT_FAILURE);
-	if(pthread_join(t2, NULL) != 0)
-		return (EXIT_FAILURE);
+	(void)ac;
+	(void)av;
+	int n;
+	int id = fork();
+	if (id == 0)
+		n = 1;
+	else
+		n = 6;
+
+	if (id != 0)
+		wait(NULL);
+
+	int i = n;
+
+	while (i < n + 5)
+	{
+		printf("%d ", i++);
+		fflush(stdout);
+	}
+	if (id != 0)
+		puts("");
 	return (0);
 }
