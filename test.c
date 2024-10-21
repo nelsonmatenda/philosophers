@@ -16,8 +16,12 @@ int main(int ac, char **av)
 		n = 6;
 
 	if (id != 0)
-		wait(NULL);
-
+	{
+		int status;
+		wait(&status);
+		if (WIFEXITED(status))
+			printf("Pai: meu filho terminou com código %d\n", WEXITSTATUS(status));
+	}
 	int i = n;
 
 	while (i < n + 5)
