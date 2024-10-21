@@ -8,28 +8,27 @@ int main(int ac, char **av)
 {
 	(void)ac;
 	(void)av;
-	int n;
-	int id = fork();
-	if (id == 0)
-		n = 1;
+	int id1 = fork();
+	int id2 = fork();
+
+	if (id1 == 0)
+	{
+		if (id2 == 0)
+			printf("in Y\n");
+		else
+			printf("in X\n");
+	}
 	else
-		n = 6;
-
-	if (id != 0)
 	{
-		int status;
-		wait(&status);
-		if (WIFEXITED(status))
-			printf("Pai: meu filho terminou com código %d\n", WEXITSTATUS(status));
+		if (id2 == 0)
+			printf("in Z\n");
+		else
+			printf("in main(parent)\n");
 	}
-	int i = n;
-
-	while (i < n + 5)
+	while (wait(NULL) != -1)
 	{
-		printf("%d ", i++);
-		fflush(stdout);
+		printf("Wait for\n");
 	}
-	if (id != 0)
-		puts("");
+
 	return (0);
 }
