@@ -8,27 +8,39 @@ int main(int ac, char **av)
 {
 	(void)ac;
 	(void)av;
-	int id1 = fork();
-	int id2 = fork();
+	int fd[2];
 
-	if (id1 == 0)
+	if (pipe(fd) == -1)
 	{
-		if (id2 == 0)
-			printf("in Y\n");
-		else
-			printf("in X\n");
+		printf("Error with pipe\n");
+		return (1);
+	}
+
+	int id = fork();
+	if (id == 0)
+	{
+		int x;
+		printf("digite um numero: ");
+		scanf("%d", &x);
+		if (write(fd[1], &x, sizeof(int)) == -1)
+		{
+			printf("Error with write\n");
+			return(2);
+		}
+		close(fd[1]);
 	}
 	else
 	{
-		if (id2 == 0)
-			printf("in Z\n");
-		else
-			printf("in main(parent)\n");
+		//wait(NULL);
+		close(fd[1]);
+		int y;
+		if(read(fd[0], &y, sizeof(int)) == -1)
+		{
+			printf("Error with read\n");
+			return(2);
+		}
+		close(fd[0]);
+		printf("valor pegado no child: %d\n", y);
 	}
-	while (wait(NULL) != -1)
-	{
-		printf("Wait for\n");
-	}
-
 	return (0);
 }
