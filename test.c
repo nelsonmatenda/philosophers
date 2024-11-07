@@ -4,6 +4,9 @@
 #include <pthread.h>
 #include <sys/wait.h>
 
+
+//passei aqui iracelma
+
 int main(int ac, char **av)
 {
 	(void)ac;
