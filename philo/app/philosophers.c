@@ -1,16 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   philosophers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/15 11:32:05 by nfigueir          #+#    #+#             */
-/*   Updated: 2024/10/15 11:32:29 by nfigueir         ###   ########.fr       */
+/*   Created: 2024/11/15 11:11:02 by nfigueir          #+#    #+#             */
+/*   Updated: 2024/11/15 12:08:46 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main(void)
-{
+#include "../include/philosophers.h"
 
+int	main(int ac, char **av)
+{
+	t_philosophers	data;
+
+	memset(&data, 0, sizeof(data));
+	if (ac < 5 || ac > 6)
+		return (ft_exit(&data, ARG_ERR, ""), EXIT_FAILURE);
 }
