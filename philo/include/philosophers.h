@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:12:23 by nfigueir          #+#    #+#             */
-/*   Updated: 2024/11/15 12:17:17 by nfigueir         ###   ########.fr       */
+/*   Updated: 2024/11/18 11:57:39 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 
 # include <string.h>
 # include <stdlib.h>
+# include <unistd.h>
 
-typedef enum s_error
+enum s_error
 {
 	ARG_ERR = -42,
 };
