@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers.c                                     :+:      :+:    :+:   */
+/*   error_message.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/15 11:11:02 by nfigueir          #+#    #+#             */
-/*   Updated: 2024/11/21 09:41:44 by nfigueir         ###   ########.fr       */
+/*   Created: 2024/11/20 10:20:35 by nfigueir          #+#    #+#             */
+/*   Updated: 2024/11/21 09:18:09 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/philosophers.h"
+#ifndef ERROR_MESSAGE_H
+# define ERROR_MESSAGE_H
 
-int	main(int ac, char **av)
-{
-	t_philosophers	data;
-
-	memset(&data, 0, sizeof(data));
-	if (ac < 5 || ac > 6)
-		return (ft_exit(&data, ARG_ERR, 0, 0), EXIT_FAILURE);
-	if (!init_data(&data, ac, av))
-		return (EXIT_FAILURE);
-}
+# define ARG_ERR_MSG "Invalid arguments\n"
+# define MEM_ERR_MSG "Memory allocation failed\n"
+# define MUTEX_ERR_MSG "Mutex initialization failed\n"
+#endif
