@@ -15,20 +15,20 @@ vpath %.c $(DIR_SRC) $(DIR_UTIL)
 all: $(NAME)
 
 $(NAME): $(APP) $(OBJ_DIR) $(OBJS)
-	cc $(CFLAGS) $(APP) $(OBJS) -o $(NAME)
+	@cc $(CFLAGS) $(APP) $(OBJS) -o $(NAME)
 
 $(OBJ_DIR):
 	@mkdir -p ${OBJ_DIR}
 
 $(OBJ_DIR)/%.o: %.c
 	@/bin/echo -n .
-	cc $(CFLAGS) -c $< -o $@
+	@cc $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -rf $(OBJ_DIR)
+	@rm -rf $(OBJ_DIR)
 	@echo "obj limpos"
 fclean: clean
-	rm -rf $(NAME)
+	@rm -rf $(NAME)
 	@echo "$(NAME) limpo"
 
 re: fclean all
