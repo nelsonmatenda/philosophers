@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 12:04:53 by nfigueir          #+#    #+#             */
-/*   Updated: 2024/11/21 09:23:24 by nfigueir         ###   ########.fr       */
+/*   Updated: 2024/11/21 14:14:23 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	ft_exit(t_philosophers *data, int error, int mutex, int th)
 {
 	if (error < 0)
 		erro_print(error);
-	if (data->status)
-		free(data->status);
+	if (data->philo)
+		free(data->philo);
 	if (mutex > 0)
 		destroy_mutex(data, mutex);
 }
