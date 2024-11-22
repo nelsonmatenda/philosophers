@@ -1,5 +1,5 @@
-SRCS = exit.c
-UTIL = libft.c
+SRCS = exit.c init.c
+UTIL = libft.c utils.c
 APP = ./app/philosophers.c
 CFLAGS = -Wall -Wextra -Werror -pthread -fsanitize=thread -g3
 OBJ_DIR = ./obj

@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:12:23 by nfigueir          #+#    #+#             */
-/*   Updated: 2024/11/21 14:13:30 by nfigueir         ###   ########.fr       */
+/*   Updated: 2024/11/22 08:16:08 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,10 @@ typedef struct	s_philosophers
 	t_status	*philo;
 }				t_philosophers;
 
-void	ft_exit(t_philosophers *data, int error, int mutex, int th);
-void	ft_putstr_fd(char *s, int fd);
-int		get_args(const char *str);
+void			ft_exit(t_philosophers *data, int error, int mutex, int th);
+void			ft_putstr_fd(char *s, int fd);
+int				get_args(const char *str);
 long long int	get_timestamp(void);
+int				ft_isdigit(int c);
+int				init_data(t_philosophers *data, int ac, char **av);
 #endif
