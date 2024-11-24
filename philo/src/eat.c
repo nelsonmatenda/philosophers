@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers.c                                     :+:      :+:    :+:   */
+/*   eat.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/15 11:11:02 by nfigueir          #+#    #+#             */
-/*   Updated: 2024/11/24 10:24:30 by nfigueir         ###   ########.fr       */
+/*   Created: 2024/11/24 10:52:21 by nfigueir          #+#    #+#             */
+/*   Updated: 2024/11/24 12:04:45 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philosophers.h"
 
-int	main(int ac, char **av)
+int	go_eat(t_status *philo)
 {
-	t_philosophers	data;
-
-	memset(&data, 0, sizeof(data));
-	if (ac < 5 || ac > 6)
-		return (ft_exit(&data, ARG_ERR, 0, 0), EXIT_FAILURE);
-	if (!init_data(&data, ac, av))
-		return (EXIT_FAILURE);
-	if (!start(&data))
-		return (EXIT_FAILURE);
+	if (is_philo_died(philo->config) || is_all_eat(philo->config->philo))
+		
 }

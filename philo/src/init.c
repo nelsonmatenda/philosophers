@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 09:45:20 by nfigueir          #+#    #+#             */
-/*   Updated: 2024/11/21 14:12:18 by nfigueir         ###   ########.fr       */
+/*   Updated: 2024/11/24 10:19:42 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static int	init_config(t_philosophers *data, int ac, char **av)
 		return (ft_exit(data, ARG_ERR, 0, 0), 0);
 	return (1);
 }
-
 
 static int	init_mutex_philo(t_status *philo)
 {

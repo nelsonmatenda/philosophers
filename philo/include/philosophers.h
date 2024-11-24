@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:12:23 by nfigueir          #+#    #+#             */
-/*   Updated: 2024/11/22 08:16:08 by nfigueir         ###   ########.fr       */
+/*   Updated: 2024/11/24 12:05:17 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,6 @@ int				get_args(const char *str);
 long long int	get_timestamp(void);
 int				ft_isdigit(int c);
 int				init_data(t_philosophers *data, int ac, char **av);
+int	is_philo_died(t_config *config);
+int	is_all_eat(t_philosophers *data);
 #endif
