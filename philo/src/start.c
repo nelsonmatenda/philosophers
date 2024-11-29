@@ -6,11 +6,19 @@
 /*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 10:24:52 by nfigueir          #+#    #+#             */
-/*   Updated: 2024/11/24 11:02:23 by nfigueir         ###   ########.fr       */
+/*   Updated: 2024/11/29 09:16:45 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philosophers.h"
+
+void	*set_ph_stop(t_status *philo)
+{
+	pthread_mutex_lock(&(philo->mutex_stop));
+	philo->stop = 1;
+	pthread_mutex_unlock(&(philo->mutex_stop));
+	return (NULL);
+}
 
 int	is_philo_died(t_config *config)
 {

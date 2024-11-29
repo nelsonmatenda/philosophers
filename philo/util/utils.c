@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 10:03:27 by nfigueir          #+#    #+#             */
-/*   Updated: 2024/11/24 10:43:01 by nfigueir         ###   ########.fr       */
+/*   Updated: 2024/11/29 09:43:53 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,19 @@ void	ft_usleep(long int time_in_ms, t_philosophers *data)
 		else
 			usleep(time_in_ms / 10);
 	}
+}
+
+void	ft_print_state(t_status *philo, char *s)
+{
+	pthread_mutex_lock(&philo->config->mutex_stop);
+	if (philo->config->stop || is_all_eat(philo->config->philo))
+	{
+		pthread_mutex_unlock(&philo->config->mutex_stop);
+		return ;
+	}
+	pthread_mutex_unlock(&philo->config->mutex_stop);
+	pthread_mutex_lock(&philo->config->mutex_console);
+	printf("%09lld %d %s", get_timestamp() - philo->config->start_time, \
+		philo->pos, s);
+	pthread_mutex_unlock(&philo->config->mutex_console);
 }
