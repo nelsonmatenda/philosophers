@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:12:23 by nfigueir          #+#    #+#             */
-/*   Updated: 2024/11/29 09:51:43 by nfigueir         ###   ########.fr       */
+/*   Updated: 2024/12/02 08:23:53 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ enum s_error
 {
 	ARG_ERR =	-42,
 	MEM_ERR =	-43,
-	MUTEX_ERR =	-44
+	MUTEX_ERR =	-44,
+	TH_ERR = -45,
 };
 
 
@@ -77,6 +78,8 @@ int				ft_isdigit(int c);
 int				init_data(t_philosophers *data, int ac, char **av);
 int	is_philo_died(t_config *config);
 int	is_all_eat(t_philosophers *data);
+void	*set_ph_stop(t_status *philo);
 void	ft_print_state(t_status *philo, char *s);
 void	ft_usleep(long int time_in_ms, t_philosophers *data);
+int	go_eat(t_status *philo);
 #endif

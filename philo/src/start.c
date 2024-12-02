@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 10:24:52 by nfigueir          #+#    #+#             */
-/*   Updated: 2024/11/29 09:16:45 by nfigueir         ###   ########.fr       */
+/*   Updated: 2024/12/02 08:50:09 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,14 @@ static void	*ph_life(void *void_philo)
 		ft_usleep(philo->config->t_eat / 10, philo->config->philo);
 	while (!is_philo_died(philo->config))
 	{
-		if (!)
+		if (!go_eat(philo))
+			return (NULL);
+		if (!go_sleep(philo))
+			return (NULL);
+		if (!go_think(philo))
+			return (NULL);
 	}
+	return (set_ph_stop(philo));
 }
 
 int	start(t_philosophers *data)
@@ -76,5 +82,9 @@ int	start(t_philosophers *data)
 	{
 		if (phtread_create(&(data->philo[i].thread), NULL, ph_life, \
 			&data->philo[i]))
+			return (ft_exit(data, TH_ERR, 3, i), 0);
 	}
+	pthread_create(&th_monitoring, NULL, monitoring, data);
+	pthrea_join(th_monitoring, NULL);
+	return (1);
 }

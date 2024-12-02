@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 10:52:21 by nfigueir          #+#    #+#             */
-/*   Updated: 2024/11/29 09:52:52 by nfigueir         ###   ########.fr       */
+/*   Updated: 2024/12/02 08:39:14 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,27 @@ static void	go_eat_even(t_status *philo)
 	ft_usleep(philo->config->t_eat, philo->config->philo);
 	pthread_mutex_unlock(&philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);
+}
+
+static int	go_eat_odd(t_status *philo)
+{
+	if (philo->config->n_philo == 1)
+		return (0);
+	pthread_mutex_lock(philo->right_fork);
+	ft_print_state(philo, "has taken a fork\n");
+	pthread_mutex_lock(&philo->left_fork);
+	ft_print_state(philo, "has taken a fork\n");
+	ft_print_state(philo, "is eating\n");
+	pthread_mutex_unlock(&philo->mutex_t_meal);
+	philo->t_meal = get_timestamp();
+	pthread_mutex_unlock(&philo->mutex_t_meal);
+	pthread_mutex_lock(&philo->config->mutex_eat);
+	philo->meals_count++;
+	pthread_mutex_unlock(&philo->config->mutex_eat);
+	ft_usleep(philo->config->t_eat, philo->config->philo);
+	pthread_mutex_unlock(philo->right_fork);
+	pthread_mutex_unlock(&philo->left_fork);
+	return (1);
 }
 
 int	go_eat(t_status *philo)
