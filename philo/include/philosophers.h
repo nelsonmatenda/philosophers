@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:12:23 by nfigueir          #+#    #+#             */
-/*   Updated: 2024/12/02 08:23:53 by nfigueir         ###   ########.fr       */
+/*   Updated: 2024/12/10 10:16:03 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include <pthread.h>
 # include <sys/time.h>
+# include <stdio.h>
 # include "error_message.h"
 
 # define INT_MIN -2147483648
@@ -51,7 +52,7 @@ typedef struct s_config
 typedef struct s_status
 {
 	int				pos;
-	int				meals_count; //TODO: Verificar depois
+	int				meals_count;
 	int				is_eating;
 	int				is_dead;
 	long long int	t_meal;
@@ -76,10 +77,16 @@ int				get_args(const char *str);
 long long int	get_timestamp(void);
 int				ft_isdigit(int c);
 int				init_data(t_philosophers *data, int ac, char **av);
-int	is_philo_died(t_config *config);
-int	is_all_eat(t_philosophers *data);
-void	*set_ph_stop(t_status *philo);
-void	ft_print_state(t_status *philo, char *s);
-void	ft_usleep(long int time_in_ms, t_philosophers *data);
-int	go_eat(t_status *philo);
+int				is_philo_died(t_config *config);
+int				is_all_eat(t_philosophers *data);
+void			*set_ph_stop(t_status *philo);
+void			ft_print_state(t_status *philo, char *s);
+void			ft_usleep(long int time_in_ms, t_philosophers *data);
+int				go_eat(t_status *philo);
+int				go_sleep(t_status *philo);
+int				go_think(t_status *philo);
+void			*monitoring(void *void_data);
+int				start(t_philosophers *data);
+int				check_stop_state(t_philosophers *data);
+
 #endif

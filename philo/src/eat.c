@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 10:52:21 by nfigueir          #+#    #+#             */
-/*   Updated: 2024/12/02 08:39:14 by nfigueir         ###   ########.fr       */
+/*   Updated: 2024/12/10 09:59:36 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int	go_eat_odd(t_status *philo)
 int	go_eat(t_status *philo)
 {
 	if (is_philo_died(philo->config) || is_all_eat(philo->config->philo))
-		return (se_ph_stop(philo), 0);
+		return (set_ph_stop(philo), 0);
 	if (philo->pos % 2 == 0)
 		go_eat_even(philo);
 	else

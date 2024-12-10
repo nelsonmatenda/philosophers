@@ -1,4 +1,4 @@
-SRCS = exit.c init.c
+SRCS = exit.c init.c eat.c monitoring.c sleep.c start.c stop.c think.c
 UTIL = libft.c utils.c
 APP = ./app/philosophers.c
 CFLAGS = -Wall -Wextra -Werror -pthread -fsanitize=thread -g3

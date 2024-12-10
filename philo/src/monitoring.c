@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 08:50:26 by nfigueir          #+#    #+#             */
-/*   Updated: 2024/12/02 09:09:09 by nfigueir         ###   ########.fr       */
+/*   Updated: 2024/12/10 10:02:57 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ static void	print_all_eat(t_philosophers *data)
 			get_timestamp() - data->config.start_time, data->config.n_meals);
 	else
 		printf("%09lld All philosophers has eaten their %d meal\n", \
-			get_timestamp() - data.);
+			get_timestamp() - data->config.start_time, data->config.n_meals);
+	pthread_mutex_unlock(&data->config.mutex_console);
 }
 
 void	*monitoring(void *void_data)
@@ -46,8 +47,8 @@ void	*monitoring(void *void_data)
 		while (++i < data->config.n_philo)
 		{
 			pthread_mutex_lock(&data->philo[i].mutex_t_meal);
-			if ((get_timestamp - data->philo[i].t_meal) \
-				>= data->config.t_die)
+			if ((get_timestamp() - data->philo[i].t_meal) >= \
+				data->config.t_die)
 			{
 				ph_died(&data->philo[i]);
 				pthread_mutex_unlock(&data->philo[i].mutex_t_meal);

@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 10:24:52 by nfigueir          #+#    #+#             */
-/*   Updated: 2024/12/02 08:50:09 by nfigueir         ###   ########.fr       */
+/*   Updated: 2024/12/10 10:15:41 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,11 @@ int	start(t_philosophers *data)
 	i = -1;
 	while (++i < data->config.n_philo)
 	{
-		if (phtread_create(&(data->philo[i].thread), NULL, ph_life, \
+		if (pthread_create(&(data->philo[i].thread), NULL, ph_life, \
 			&data->philo[i]))
 			return (ft_exit(data, TH_ERR, 3, i), 0);
 	}
 	pthread_create(&th_monitoring, NULL, monitoring, data);
-	pthrea_join(th_monitoring, NULL);
+	pthread_join(th_monitoring, NULL);
 	return (1);
 }

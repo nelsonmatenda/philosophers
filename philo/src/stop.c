@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers.c                                     :+:      :+:    :+:   */
+/*   stop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfigueir <nfigueir@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/15 11:11:02 by nfigueir          #+#    #+#             */
-/*   Updated: 2024/12/10 10:17:34 by nfigueir         ###   ########.fr       */
+/*   Created: 2024/12/10 09:39:32 by nfigueir          #+#    #+#             */
+/*   Updated: 2024/12/10 09:43:26 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philosophers.h"
 
-int	main(int ac, char **av)
+int	check_stop_state(t_philosophers *data)
 {
-	t_philosophers	data;
+	int	i;
+	int	ph_stopped;
 
-	memset(&data, 0, sizeof(data));
-	if (ac < 5 || ac > 6)
-		return (ft_exit(&data, ARG_ERR, 0, 0), EXIT_FAILURE);
-	if (!init_data(&data, ac, av))
-		return (EXIT_FAILURE);
-	if (!start(&data))
-		return (EXIT_FAILURE);
-	while (1)
+	ph_stopped = 0;
+	i = -1;
+	while (++i < data->config.n_philo)
 	{
-		ft_usleep(data.config.t_eat / 10, &data);
-		if (check_stop_state(&data))
-			break ;
+		pthread_mutex_lock(&data->philo[i].mutex_stop);
+		if (data->philo[i].stop)
+			ph_stopped++;
+		pthread_mutex_unlock(&data->philo[i].mutex_stop);
 	}
-	return (ft_exit(&data, 0, 3, data.config.n_philo), EXIT_SUCCESS);
+	if (ph_stopped == data->config.n_philo)
+		return (1);
+	return (0);
 }
