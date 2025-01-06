@@ -18,7 +18,7 @@ void	ph_died(t_status *philo)
 	philo->config->stop = 1;
 	pthread_mutex_unlock(&philo->config->mutex_stop);
 	pthread_mutex_lock(&philo->config->mutex_console);
-	printf("%09lld %d %s", get_timestamp() - philo->config->start_time, \
+	printf("%lld %d %s", get_timestamp() - philo->config->start_time, \
 		philo->pos, "died\n");
 	pthread_mutex_unlock(&philo->config->mutex_console);
 }
@@ -27,10 +27,10 @@ static void	print_all_eat(t_philosophers *data)
 {
 	pthread_mutex_lock(&data->config.mutex_console);
 	if (data->config.n_meals > 1)
-		printf("%09lld All philosophers has eaten their %d meals\n", \
+		printf("%lld All philosophers has eaten their %d meals\n", \
 			get_timestamp() - data->config.start_time, data->config.n_meals);
 	else
-		printf("%09lld All philosophers has eaten their %d meal\n", \
+		printf("%lld All philosophers has eaten their %d meal\n", \
 			get_timestamp() - data->config.start_time, data->config.n_meals);
 	pthread_mutex_unlock(&data->config.mutex_console);
 }
@@ -58,6 +58,7 @@ void	*monitoring(void *void_data)
 		}
 		if (is_all_eat(data))
 			return (print_all_eat(data), NULL);
+		usleep(1000);
 	}
 	return (NULL);
 }

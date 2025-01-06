@@ -38,10 +38,10 @@ int destroy_thread(t_philosophers *data, int count)
 	i = -1;
 	while (++i < count)
 	{
-		pthread_mutex_destroy(&data->philo[i].left_fork);
-		pthread_mutex_destroy(&data->philo[i].mutex_t_meal);
-		pthread_mutex_destroy(&data->philo[i].mutex_stop);
 		pthread_join(data->philo[i].thread, NULL);
+		pthread_mutex_destroy(&data->philo[i].left_fork);
+		pthread_mutex_destroy(&data->philo[i].mutex_stop);
+		pthread_mutex_destroy(&data->philo[i].mutex_t_meal);
 	}
 	return (1);
 }

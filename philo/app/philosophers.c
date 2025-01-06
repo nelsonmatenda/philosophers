@@ -26,8 +26,9 @@ int	main(int ac, char **av)
 	while (1)
 	{
 		ft_usleep(data.config.t_eat / 10, &data);
-		if (check_stop_state(&data))
+		if (!check_stop_state(&data))
 			break ;
 	}
-	return (ft_exit(&data, 0, 3, data.config.n_philo), EXIT_SUCCESS);
+	ft_exit(&data, 0, 3, data.config.n_philo);
+	return (EXIT_SUCCESS);
 }

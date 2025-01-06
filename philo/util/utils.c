@@ -77,7 +77,7 @@ void	ft_print_state(t_status *philo, char *s)
 	}
 	pthread_mutex_unlock(&philo->config->mutex_stop);
 	pthread_mutex_lock(&philo->config->mutex_console);
-	printf("%09lld %d %s", get_timestamp() - philo->config->start_time, \
+	printf("%lld %d %s", get_timestamp() - philo->config->start_time, \
 		philo->pos, s);
 	pthread_mutex_unlock(&philo->config->mutex_console);
 }

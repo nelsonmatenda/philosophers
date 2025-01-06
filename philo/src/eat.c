@@ -39,7 +39,7 @@ static int	go_eat_odd(t_status *philo)
 	pthread_mutex_lock(&philo->left_fork);
 	ft_print_state(philo, "has taken a fork\n");
 	ft_print_state(philo, "is eating\n");
-	pthread_mutex_unlock(&philo->mutex_t_meal);
+	pthread_mutex_lock(&philo->mutex_t_meal);
 	philo->t_meal = get_timestamp();
 	pthread_mutex_unlock(&philo->mutex_t_meal);
 	pthread_mutex_lock(&philo->config->mutex_eat);

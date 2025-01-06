@@ -36,14 +36,23 @@ static int	init_config(t_philosophers *data, int ac, char **av)
 static int	init_mutex_philo(t_status *philo)
 {
 	if (pthread_mutex_init(&philo->left_fork, NULL))
-		return (pthread_mutex_destroy(&philo->left_fork), 0);
+	{
+		//pthread_mutex_destroy(&philo->left_fork);
+		return (0);
+	}
 	if (pthread_mutex_init(&philo->mutex_stop, NULL))
-		return (pthread_mutex_destroy(&philo->left_fork), \
-		pthread_mutex_destroy(&philo->mutex_stop), 0);
+	{
+		pthread_mutex_destroy(&philo->left_fork);
+		//pthread_mutex_destroy(&philo->mutex_stop);
+		return (0);
+	}
 	if (pthread_mutex_init(&philo->mutex_t_meal, NULL))
-		return (pthread_mutex_destroy(&philo->left_fork), \
-		pthread_mutex_destroy(&philo->mutex_stop), \
-		pthread_mutex_destroy(&philo->mutex_t_meal));
+	{
+		pthread_mutex_destroy(&philo->left_fork);
+		pthread_mutex_destroy(&philo->mutex_stop);
+		//pthread_mutex_destroy(&philo->mutex_t_meal);
+		return (0);
+	}
 	return (1);
 }
 
