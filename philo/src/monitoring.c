@@ -41,7 +41,7 @@ void	*monitoring(void *void_data)
 	int				i;
 
 	data = (t_philosophers *)void_data;
-	while(!data->config.stop)
+	while (!data->config.stop)
 	{
 		i = -1;
 		while (++i < data->config.n_philo)

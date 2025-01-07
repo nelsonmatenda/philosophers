@@ -31,14 +31,13 @@ int	destroy_mutex(t_philosophers *data, int count)
 	return (1);
 }
 
-int destroy_thread(t_philosophers *data, int count)
+int	destroy_thread(t_philosophers *data, int count)
 {
 	int	i;
 
 	i = -1;
 	while (++i < count)
 	{
-		pthread_join(data->philo[i].thread, NULL);
 		pthread_mutex_destroy(&data->philo[i].left_fork);
 		pthread_mutex_destroy(&data->philo[i].mutex_stop);
 		pthread_mutex_destroy(&data->philo[i].mutex_t_meal);

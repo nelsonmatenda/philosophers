@@ -18,7 +18,7 @@ static int	init_config(t_philosophers *data, int ac, char **av)
 	data->config.t_die = get_args(av[2]);
 	data->config.t_eat = get_args(av[3]);
 	data->config.t_sleep = get_args(av[4]);
-	data->config.n_meals = -1;;
+	data->config.n_meals = -1;
 	if (ac == 6)
 		data->config.n_meals = get_args(av[5]);
 	data->config.start_time = -1;
@@ -37,20 +37,17 @@ static int	init_mutex_philo(t_status *philo)
 {
 	if (pthread_mutex_init(&philo->left_fork, NULL))
 	{
-		//pthread_mutex_destroy(&philo->left_fork);
 		return (0);
 	}
 	if (pthread_mutex_init(&philo->mutex_stop, NULL))
 	{
 		pthread_mutex_destroy(&philo->left_fork);
-		//pthread_mutex_destroy(&philo->mutex_stop);
 		return (0);
 	}
 	if (pthread_mutex_init(&philo->mutex_t_meal, NULL))
 	{
 		pthread_mutex_destroy(&philo->left_fork);
 		pthread_mutex_destroy(&philo->mutex_stop);
-		//pthread_mutex_destroy(&philo->mutex_t_meal);
 		return (0);
 	}
 	return (1);

@@ -25,14 +25,13 @@
 # define INT_MAX 2147483647
 # define PHILO_MAX 200
 
-enum s_error
+enum e_error
 {
 	ARG_ERR =	-42,
 	MEM_ERR =	-43,
 	MUTEX_ERR =	-44,
 	TH_ERR = -45,
 };
-
 
 typedef struct s_config
 {
@@ -65,7 +64,7 @@ typedef struct s_status
 	t_config		*config;
 }					t_status;
 
-typedef struct	s_philosophers
+typedef struct s_philosophers
 {
 	t_config	config;
 	t_status	*philo;

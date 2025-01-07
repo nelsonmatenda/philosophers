@@ -1,7 +1,7 @@
 SRCS = exit.c init.c eat.c monitoring.c sleep.c start.c stop.c think.c
 UTIL = libft.c utils.c
 APP = ./app/philosophers.c
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror -g
 OBJ_DIR = ./obj
 DIR_UTIL	= ./util/
 DIR_SRC = ./src/

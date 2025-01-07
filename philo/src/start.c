@@ -36,28 +36,24 @@ int	is_all_eat(t_philosophers *data)
 {
 	int	i;
 	int	ph_has_eat;
-	int	meals_count[data->config.n_philo];
 
 	if (data->config.n_meals == -1)
 		return (0);
 	ph_has_eat = 0;
 	i = -1;
-	pthread_mutex_lock(&data->config.mutex_eat);
-	while (++i < data->config.n_philo)
-		meals_count[i] = data->philo[i].meals_count;
-	pthread_mutex_unlock(&data->config.mutex_eat);
-	i = -1;
 	while (++i < data->config.n_philo)
 	{
-		if (meals_count[i] >= data->config.n_meals)
+		pthread_mutex_lock(&data->config.mutex_eat);
+		if (data->philo[i].meals_count >= data->config.n_meals)
 			ph_has_eat++;
+		pthread_mutex_unlock(&data->config.mutex_eat);
 	}
-	return(ph_has_eat == data->config.n_philo);
+	return (ph_has_eat == data->config.n_philo);
 }
 
 static void	*ph_life(void *void_philo)
 {
-	t_status *philo;
+	t_status	*philo;
 
 	philo = (t_status *)void_philo;
 	if (philo->pos % 2 == 0)
@@ -88,5 +84,8 @@ int	start(t_philosophers *data)
 	}
 	pthread_create(&th_monitoring, NULL, monitoring, data);
 	pthread_join(th_monitoring, NULL);
+	i = -1;
+	while (++i < data->config.n_philo)
+		pthread_join(data->philo[i].thread, NULL);
 	return (1);
 }

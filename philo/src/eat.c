@@ -61,5 +61,4 @@ int	go_eat(t_status *philo)
 		if (!go_eat_odd(philo))
 			return (set_ph_stop(philo), 0);
 	return (1);
-
 }
